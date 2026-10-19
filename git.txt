@@ -1,3 +1,39 @@
 1. git
 
 2. github
+
+
+u = untracked
+
+
+localchages  --- GIT  ---- github
+
+
+
+
+==============
+
+AI Applications
+ChatGpt, gemini, copilot, claude..........
+
+Prompt --- Input Prompt
+
+who is the PM of India
+
+who i  s th e Pm  --- tokens   200000 tokens
+
+
+111,222
+
+LLM
++ 
+MCP
+
+
+====work on real time browsers
+
+
+
+python -m pytest tests\test_authorization.py::test_invalid_username_shows_error -q
+
+

@@ -8,6 +8,10 @@ u = untracked
 
 localchages  --- GIT  ---- github
 
+1. git add filepath  or git add .
+2.git commit -m "datahandling"
+3. git push
+
 
 
 

@@ -53,16 +53,3 @@ jobs:
         publish_branch: gh-pages
         publish_dir: allure-report
 
-
-
-
-
-
-
-
-
-
-# 5.playwright install
-# 6.run test
-# 7. installing allure'
-# 8. generate

@@ -10,7 +10,7 @@ on:
       -main
 jobs:
   tests:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: python installation
       uses: actions/setup-python@v4

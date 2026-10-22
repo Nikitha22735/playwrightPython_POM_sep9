@@ -2,4 +2,12 @@ __pycache__
 .pytest_cache
 .env
 __pycache__
-tests/__pycache__
+tests\\__pycache__
+allureresult1
+allureresult2
+allureresult3
+allureresult4
+allureresult5
+allureresult6
+allureresults
+assets

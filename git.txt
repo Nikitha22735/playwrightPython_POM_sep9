@@ -13,6 +13,10 @@ localchages  --- GIT  ---- github
 3. git push
 
 
+git clone
+git pull origin main
+
+
 
 
 ==============

@@ -1,0 +1,68 @@
+name: Playwright testing 9 sept
+
+on:
+  push:
+    branches:
+      -main
+
+  pull_request:
+    branches:
+      -main
+jobs:
+  tests:
+    run-on: ubuntu-latest
+    steps:
+    - name: python installation
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: git clone
+      uses: actions/checkout@v4
+
+    - name: install dependencies 
+      run: |
+        pip install -r requirements.txt
+        pip install allure-pytest
+
+    - name: install browsers 
+      run: playwright install
+
+    - name: test execution
+      run: pytest -n 6 --alluredir=allureresults --capture=tee-sys
+
+    - name: install allure 
+      if: always()
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip wget
+          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
+          unzip allure-2.27.0.zip
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          allure --version
+
+    - name: Generate report
+      if: always()
+      run: allure generate allureresults -o allurereport --clean
+
+    - name: Deploy Allure Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: allure-report
+
+
+
+
+
+
+
+
+
+
+# 5.playwright install
+# 6.run test
+# 7. installing allure'
+# 8. generate

@@ -1,0 +1,46 @@
+HTML:
+
+pip install pytest-html
+pytest -m smoke --headed -v --html=reporter.html
+Allure
+
+pytest -m smoke -n 3 --headed -v --alluredir=allureresults
+
+allure serve allureresults
+allure generate allureresults -o allurereport --clean
+
+
+
+
+
+
+
+
+===========================
+
+
+1. getting laptop
+2. python install
+3. git clone
+4. pip install -r requirements.txt
+5.playwright install
+6.run test
+7. installing allure'
+8. generate
+
+
+
+
+Jenkins
+gitHubAction
+Teamcity
+
+===============
+
+cloud platform -- ACTION
+
+
+Lead
+
+PR -- execute the tescases automati
+MAIN -- execute

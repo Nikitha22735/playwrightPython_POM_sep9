@@ -8,6 +8,13 @@ from pages.home import homePage
 @pytest.fixture()
 def navigation(page):
     page.goto("https://www.amazon.in/")
+    continue_button = page.get_by_role(
+        "button",
+        name="Continue shopping"
+    )
+
+    if continue_button.is_visible(timeout=5000):
+        continue_button.click()
     
 @pytest.fixture()
 def homePageObj(page):

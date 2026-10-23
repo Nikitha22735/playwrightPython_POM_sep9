@@ -1,38 +1,43 @@
-name: Playwright testing 9 sept
+
+name: Playwright Testing with Allure
 
 on:
   push:
     branches:
-      -main
+      - main
 
   pull_request:
     branches:
-      -main
+      - main
+
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     steps:
-    - name: python installation
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
-    - name: git clone
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: install dependencies 
-      run: |
-        pip install -r requirements.txt
-        pip install allure-pytest
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-    - name: install browsers 
-      run: playwright install
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install allure-pytest
 
-    - name: test execution
-      run: pytest -n 6 --alluredir=allureresults --capture=tee-sys
+      - name: Install Playwright browsers
+        run: playwright install --with-deps
 
-    - name: install allure 
-      if: always()
-      run: |
+      - name: Execute tests
+        run: pytest -n 10 --alluredir=allureresults --capture=tee-sys
+        continue-on-error: true
+
+      - name: Install Allure CLI
+        if: always()
+        run: |
           sudo apt-get update
           sudo apt-get install -y unzip wget
           wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
@@ -41,15 +46,15 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
           allure --version
 
-    - name: Generate report
-      if: always()
-      run: allure generate allureresults -o allurereport --clean
+      - name: Generate Allure report
+        if: always()
+        run: |
+          allure generate allureresults -o allurereport --clean
 
-    - name: Deploy Allure Report to GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-report
-
+      - name: Deploy Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allurereport

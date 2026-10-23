@@ -15,11 +15,21 @@ on:
         description: "Provide your marker"
         required: true
         default: "smoke"
+      browser:
+        description: "Provide your browser"
+        required: true
+        default: "chromium"
+
+  schedule:
+    - cron: '30 21 * 11 4' #min hr date mnth week(sun-0)  UTC
 
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+    env:
+      sep9usName: ${{vars.AMAZONUSERNAME}}
+      sep9pw: ${{secrets.PASSWORD}}
 
     steps:
       - name: Checkout repository
@@ -39,7 +49,7 @@ jobs:
         run: playwright install --with-deps
 
       - name: Execute tests
-        run: pytest -n 10 -m "${{github.event.input.marker}}" --alluredir=allureresults --capture=tee-sys
+        run: pytest -n 10 -m "${{github.event.input.marker}}" --browser "${{github.event.input.browser}}" --alluredir=allureresults --capture=tee-sys
         continue-on-error: true
 
       - name: Install Allure CLI

@@ -3,11 +3,11 @@ name: Playwright testing 9 sept
 on:
   push:
     branches:
-      -main
+      - main
 
   pull_request:
     branches:
-      -main
+      - main
 jobs:
   tests:
     runs-on: ubuntu-latest

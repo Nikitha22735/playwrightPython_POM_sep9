@@ -10,6 +10,12 @@ on:
       - main
 
   workflow_dispatch:
+    inputs:
+      markers:
+        description: "Provide your marker"
+        required: true
+        default: "smoke"
+
 
 jobs:
   tests:
@@ -33,7 +39,7 @@ jobs:
         run: playwright install --with-deps
 
       - name: Execute tests
-        run: pytest -n 10 --alluredir=allureresults --capture=tee-sys
+        run: pytest -n 10 -m "${{github.event.input.marker}}" --alluredir=allureresults --capture=tee-sys
         continue-on-error: true
 
       - name: Install Allure CLI

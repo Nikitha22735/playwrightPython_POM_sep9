@@ -1,0 +1,15 @@
+1. Headed mode
+2. slowmo
+3. allure - ss, steps 
+
+===============
+
+4. set PWDEBUG=1
+5. page.pause()
+
+
+
+
+====================
+
+retry

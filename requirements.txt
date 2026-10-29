@@ -7,6 +7,7 @@ openpyxl
 python-dotenv
 pytest-html
 allure-pytest
+pytest-rerunfailures
 
 
 # pip install -r requirements.txt

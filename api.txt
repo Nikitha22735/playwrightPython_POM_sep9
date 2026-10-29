@@ -1,0 +1,26 @@
+GET: https://dummyjson.com/products
+POST: https://dummyjson.com/products/add
+PUT: https://dummyjson.com/products/1
+PATCH: https://dummyjson.com/products/1
+DELETE: https://dummyjson.com/products/1
+
+
+
+
+
+================================
+200 Ok 
+201 Created
+
+
+301 - moved permanently ---
+
+
+400 Bad requs
+401 unauthorized
+403 Forbidden
+404 Not Found
+
+
+
+500 

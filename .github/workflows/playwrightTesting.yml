@@ -18,11 +18,10 @@ on:
       browser:
         description: "Provide your browser"
         required: true
-        default: "chromium"
+        default: "chromium"       
 
   schedule:
     - cron: '30 21 * 11 4' #min hr date mnth week(sun-0)  UTC
-
 
 jobs:
   tests:

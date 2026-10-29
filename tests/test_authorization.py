@@ -8,12 +8,14 @@ from utils.jsonHandling import jsonhandling
 
 
 @pytest.mark.smoke
+
 def test_positive_login(page: Page, navigation):
     credentials = jsonhandling("testData\\creds.json")
     username = credentials["positiveCreds"]["username"]
     password = credentials["positiveCreds"]["password"]
     authorization_page = authorisationPage(page)
     authorization_page.sign_in(username, password)
+    # page.pause()
     authorization_page.validateSuccessfulLogin()
 
 

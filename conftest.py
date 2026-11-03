@@ -47,25 +47,25 @@ def pytest_runtest_makereport(item):
 
 
 
-@pytest.fixture(scope="session", autouse=True)
-def cookieGeneration(context):
-    page = context.new_page()
-    page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-    page.get_by_role("textbox", name="Username").click()
-    page.get_by_role("textbox", name="Username").fill("Admin")
-    page.get_by_role("textbox", name="Password").click()
-    page.get_by_role("textbox", name="Password").click()
-    page.get_by_role("textbox", name="Password").fill("admin123")
-    page.get_by_role("button", name="Login").click()
-    context.storage_state(path="testData\\cookies.json")
+# @pytest.fixture(scope="session", autouse=True)
+# def cookieGeneration(context):
+#     page = context.new_page()
+#     page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+#     page.get_by_role("textbox", name="Username").click()
+#     page.get_by_role("textbox", name="Username").fill("Admin")
+#     page.get_by_role("textbox", name="Password").click()
+#     page.get_by_role("textbox", name="Password").click()
+#     page.get_by_role("textbox", name="Password").fill("admin123")
+#     page.get_by_role("button", name="Login").click()
+#     context.storage_state(path="testData\\cookies.json")
 
 
-@pytest.fixture()
-def adminpage():
-    with sync_playwright() as p:
-       browser= p.chromium.launch(headless=False)
-       context = browser.new_context(storage_state="testData\\cookies.json")
-       page = context.new_page() 
-    #    if tie:
-    #        cookieGeneration()
-       yield page
+# @pytest.fixture()
+# def adminpage():
+#     with sync_playwright() as p:
+#        browser= p.chromium.launch(headless=False)
+#        context = browser.new_context(storage_state="testData\\cookies.json")
+#        page = context.new_page() 
+#     #    if tie:
+#     #        cookieGeneration()
+#        yield page

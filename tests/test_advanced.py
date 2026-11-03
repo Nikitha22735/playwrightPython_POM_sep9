@@ -1,5 +1,8 @@
 
-from playwright.sync_api import sync_playwright, Playwright
+import io
+
+import allure
+from playwright.sync_api import sync_playwright, Playwright, expect
 import pytest
 
 # @pytest.mark.advanced
@@ -36,7 +39,7 @@ def test_geoLocationTesting():
        page.wait_for_timeout(13000)
 
 
-@pytest.mark.advanced
+# @pytest.mark.advanced
 def test_offlineTesting():
     with sync_playwright() as p:
        browser= p.chromium.launch(headless=False)
@@ -47,3 +50,46 @@ def test_offlineTesting():
        page.get_by_text("Udemy Courses").click()
        context.set_offline(False)
        page.wait_for_timeout(13000)
+
+@pytest.mark.advanced
+def test_visualtesting():
+    with sync_playwright() as p:
+      browser= p.chromium.launch(headless=False)
+      context = browser.new_context()
+      page = context.new_page() 
+      page.goto("https://www.facebook.com/") 
+      # page.screenshot(path="screenshots/ss3.png")
+      expect.soft(page.get_by_text("Log in2")).to_be_visible()
+      print("hello")
+
+from PIL import Image, ImageChops
+# @pytest.mark.advanced
+def test_visualtesting2():
+   ss1_path = "screenshots\\ss1.png"
+   ss2_path = "screenshots\\ss2.png"
+   allure.attach.file(ss1_path, name="ss1", attachment_type=allure.attachment_type.PNG)
+   allure.attach.file(ss2_path, name="ss2", attachment_type=allure.attachment_type.PNG)
+
+   pix1 = Image.open(ss1_path)
+   pix2 = Image.open(ss2_path)
+   diff = ImageChops.difference(pix1, pix2)
+   mask = ImageChops.lighter(
+      ImageChops.lighter(diff.getchannel("R"), diff.getchannel("G")),
+      diff.getchannel("B"),
+   ).point(lambda value: 255 if value else 0)
+   highlighted = pix1.convert("RGBA")
+   red_overlay = Image.new("RGBA", pix1.size, (255, 0, 0, 0))
+   red_overlay.putalpha(mask)
+   highlighted = Image.alpha_composite(highlighted, red_overlay)
+
+   diff_image = io.BytesIO()
+   highlighted.save(diff_image, format="PNG")
+   allure.attach(
+      diff_image.getvalue(),
+      name="visual diff (changed pixels in red)",
+      attachment_type=allure.attachment_type.PNG,
+   )
+
+   assert diff.getbbox() is None, "ss are diff"
+
+      

@@ -1,0 +1,66 @@
+CHAT GPT ---- AI Application
+
+    LLM   -- 
+
+
+
+I LOV  E P  lay wright
+
+INPUT PROMPT ---    Tokens  -- TOKENIN ID --- LLM( OPENAI, Anth, ollama )
+
+
+
+chatgpt                                                            
+Guardrails
+System Instructions
+parameters
+RAG
+LLM    ---  Google, PDF, DB.........
+
+
+1. Hallucination: 
+2. relevency
+3. correct
+
+
+===========================
+
+1. determ
+2. NON deter:    Be
+
+=============
+
+requ
+
+
+ARC, PRO
+
+
+
+===================================
+
+Deepeval    ------    PYTHON
+
+
+
+MCD CHATBOT ----- Test 
+input, output
+
+judge ollama: input, output, expected
+
+
+0, 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+
+
+Deepeval

@@ -4,9 +4,10 @@ import pytest
 from pages.home import homePage
 
 @pytest.mark.smoke
-def test_HomeScreenUI(page: Page, navigation):
-    homePageObj = homePage(page)
-    page.wait_for_timeout(3000)
+@pytest.mark.home
+def test_HomeScreenUI(adminpage: Page, navigation):
+    homePageObj = homePage(adminpage)
+    adminpage.wait_for_timeout(3000)
     homePageObj.validateTheVisibilityOfAmazon()
     homePageObj.validateTheVisibilityOfSearchBox()
     homePageObj.validateTheVisibilityOfCartIcon()

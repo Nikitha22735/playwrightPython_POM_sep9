@@ -4,6 +4,7 @@ from playwright.sync_api import Page, expect
 
 class authorisationPage:
     def __init__(self, page: Page) -> None:
+        self.page = page
         self.accountListsLink = page.get_by_role(
             "link", name="Hello, sign in Account & Lists"
         )
@@ -25,6 +26,7 @@ class authorisationPage:
     @allure.step('sign_in')
     def sign_in(self, username: str, password: str) -> None:
         self.submit_username(username)
+        self.page.pause()
         self.passwordTextbox.fill(password)
         self.signInButton.click()
 
